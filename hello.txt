@@ -1,2 +1,3 @@
 Hello Git this is our first repo there is some changes
+vanukuri chaitu
 now git fetch
