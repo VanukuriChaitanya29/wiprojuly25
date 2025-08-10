@@ -1,8 +1,0 @@
-com\wipro\user_ms\entity\User.class
-com\wipro\user_ms\repo\UserRepository.class
-com\wipro\user_ms\UserMsApplication$AppConfig.class
-com\wipro\user_ms\service\impl\UserServiceImpl.class
-com\wipro\user_ms\service\UserService.class
-com\wipro\user_ms\controller\UserController.class
-com\wipro\user_ms\dto\NotificationDTO.class
-com\wipro\user_ms\UserMsApplication.class
