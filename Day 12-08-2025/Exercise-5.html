@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS Selectors Demo</title>
+  <style>
+    /* Universal selector: applies to all elements */
+    * {
+      color: gray;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Group selector: applies to h1 and p */
+    h1, p {
+      color: blue;
+    }
+
+    /* Class selector: applies to elements with class="myclass" */
+    .myclass {
+      color: green;
+      font-size: 20px;
+    }
+
+    /* ID selector: applies to element with id="myid" */
+    #myid {
+      color: violet;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Heading without class or id</h1>
+  <p>Paragraph without class or id</p>
+
+  <h1 class="myclass">Heading with class</h1>
+  <p class="myclass">Paragraph with class</p>
+
+  <h1 id="myid">Heading with ID</h1>
+  <p id="myid">Paragraph with ID</p>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ex12 - Simple E-Commerce Website</title>
+<style>
+/* --- GLOBAL --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f0f4f8;
+    color: #222;
+}
+a { text-decoration: none; color: inherit; }
+h1, h2, h3 { font-weight: 700; margin-bottom: .6rem; }
+p { margin-bottom: 1rem; }
+
+/* --- NAVIGATION --- */
+header {
+    background: linear-gradient(90deg, #0077b6, #00a7a7);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.6);
+}
+nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+nav .logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #00e0e0;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+nav ul li a {
+    color: #d0f0f0;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+nav ul li a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px #00e0e0aa;
+}
+
+/* --- SECTIONS --- */
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+#home {
+    text-align: center;
+    background: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    color: white;
+    padding: 5rem 1rem;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.45);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 15px #0ff;
+}
+#home h2 {
+    font-size: 3rem;
+    margin-bottom: 0.6rem;
+}
+#home p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: auto;
+    text-shadow: 0 0 10px #0ff;
+}
+
+/* --- PRODUCTS PAGE --- */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+.product {
+    flex: 1 1 240px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(0, 167, 167, 0.25);
+    padding: 1rem 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.product:hover, .product:focus-within {
+    box-shadow: 0 12px 28px rgba(0, 255, 255, 0.5);
+    transform: translateY(-6px);
+    outline: none;
+}
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 0.6rem #00a7a7);
+    transition: filter 0.3s ease;
+}
+.product:hover img {
+    filter: drop-shadow(0 0 1rem #00fff7);
+}
+.product h3 {
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    color: #0077b6;
+    text-align: center;
+}
+.product p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #006666;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px #00b3b3aa;
+}
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #00a7a7, #0077b6);
+    color: white;
+    padding: 0.55rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    box-shadow: 0 6px 15px rgba(0, 185, 185, 0.6);
+}
+.btn:hover, .btn:focus {
+    background: linear-gradient(135deg, #00d4d4, #005f77);
+    box-shadow: 0 12px 35px rgba(0, 212, 212, 0.8);
+    transform: scale(1.1);
+    outline: none;
+}
+
+/* --- CART & CHECKOUT --- */
+.cart-container {
+    background: #ffffffee;
+    padding: 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0, 167, 167, 0.25);
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: .75rem 0;
+    border-bottom: 1px solid #00a7a7cc;
+    color: #005f5f;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.checkout {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+.checkout .btn { background: #0077b6; }
+.checkout .btn:hover { background: #005f77; }
+
+/* --- ABOUT / CONTACT --- */
+#about, #contact {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 22px rgba(0, 167, 167, 0.22);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+input, textarea {
+    padding: 0.85rem;
+    border: 1.5px solid #00a7a7;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+input:focus, textarea:focus {
+    border-color: #005f5f;
+    box-shadow: 0 0 10px #007b7bcc;
+}
+form .btn {
+    width: fit-content;
+    background: linear-gradient(135deg, #0077b6, #00a7a7);
+    color: white;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.3s ease;
+}
+form .btn:hover, form .btn:focus {
+    background: linear-gradient(135deg, #00d4d4, #005f77);
+    box-shadow: 0 10px 30px rgba(0, 212, 212, 0.7);
+    outline: none;
+}
+
+/* --- FOOTER --- */
+footer {
+    background: linear-gradient(90deg, #0077b6, #00a7a7);
+    color: white;
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 1.1rem;
+    box-shadow: 0 -4px 28px rgba(0,184,184,0.55);
+    letter-spacing: 0.06em;
+    user-select: none;
+    font-weight: 700;
+}
+@media(max-width: 768px) {
+    nav ul { flex-direction: column; gap: 0.9rem; }
+    .products-container { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+    <nav>
+        <div class="logo"><h1>MyStore</h1></div>
+        <ul>
+            <li><a href="#home" tabindex="0">Home</a></li>
+            <li><a href="#products" tabindex="0">Products</a></li>
+            <li><a href="#cart" tabindex="0">Cart</a></li>
+            <li><a href="#about" tabindex="0">About</a></li>
+            <li><a href="#contact" tabindex="0">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section id="home">
+    <h2>Welcome to MyStore</h2>
+    <p>Your one-stop online shop for quality products at amazing prices. Experience fast shipping, secure checkout, and premium customer service designed just for you.</p>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="products-container" aria-label="Product listing">
+        <div class="product" tabindex="0">
+            <img src="https://m.media-amazon.com/images/I/61q+RT4CybS._AC_SL1500_.jpg" alt="Wireless Headphones" />
+            <h3>Wireless Headphones</h3>
+            <p>₹4,599</p>
+            <a href="#cart" class="btn" role="button">Add to Cart</a>
+        </div>
+        <div class="product" tabindex="0">
+            <img src="https://cdn.mos.cms.futurecdn.net/DxpaKaHPBL5yF8vBjh2MjX.jpg" alt="Smart Watch" />
+            <h3>Smart Watch</h3>
+            <p>₹8,499</p>
+            <a href="#cart" class="btn" role="button">Add to Cart</a>
+        </div>
+        <div class="product" tabindex="0">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.hSbtnufimM7YA11Jk2HxpAHaER?pid=Api&P=0&h=220" alt="Bluetooth Speaker" />
+            <h3>Bluetooth Speaker</h3>
+            <p>₹2,199</p>
+            <a href="#cart" class="btn" role="button">Add to Cart</a>
+        </div>
+        <div class="product" tabindex="0">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2021/9/EG/ZA/KQ/136393597/artis-falcon-optical-gaming-mouse-1000x1000.jpg" alt="Gaming Mouse" />
+            <h3>Gaming Mouse</h3>
+            <p>₹1,299</p>
+            <a href="#cart" class="btn" role="button">Add to Cart</a>
+        </div>
+    </div>
+</section>
+
+<!-- CART -->
+<section id="cart">
+    <h2>Your Shopping Cart</h2>
+    <div class="cart-container" aria-live="polite" aria-label="Shopping cart items">
+        <div class="cart-item">
+            <span>Wireless Headphones</span>
+            <span>₹4,599</span>
+        </div>
+        <div class="cart-item">
+            <span>Smart Watch</span>
+            <span>₹8,499</span>
+        </div>
+        <div class="checkout">
+            <strong>Total: ₹13,098</strong><br><br>
+            <a href="#checkout" class="btn" role="button">Proceed to Checkout</a>
+        </div>
+    </div>
+</section>
+
+<!-- CHECKOUT FORM -->
+<section id="checkout">
+    <h2>Checkout</h2>
+    <div id="contact">
+        <form>
+            <input type="text" placeholder="Full Name" required aria-label="Full Name">
+            <input type="email" placeholder="Email Address" required aria-label="Email Address">
+            <input type="text" placeholder="Shipping Address" required aria-label="Shipping Address">
+            <input type="text" placeholder="City" required aria-label="City">
+            <input type="text" placeholder="Zip Code" required aria-label="Zip Code">
+            <button type="submit" class="btn" aria-label="Place Order">Place Order</button>
+        </form>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>About Us</h2>
+    <p>MyStore was founded with a passion for bringing premium quality products directly to your doorstep at unbeatable prices. Our mission is to offer a seamless, trustworthy shopping experience with fast delivery and dedicated customer support. We specialize in electronics and lifestyle products tailored to your needs.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form aria-label="Contact form">
+        <input type="text" placeholder="Your Name" required aria-label="Your Name">
+        <input type="email" placeholder="Email Address" required aria-label="Email Address">
+        <textarea placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+        <button type="submit" class="btn" aria-label="Send Message">Send Message</button>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 MyStore. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
