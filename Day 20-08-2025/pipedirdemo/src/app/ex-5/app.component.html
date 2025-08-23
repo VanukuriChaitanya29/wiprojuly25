@@ -1,0 +1,40 @@
+<h2>🎬 Movie Management</h2>
+
+<form (ngSubmit)="addMovie()" #movieForm="ngForm">
+  <label>Movie ID:</label>
+  <input type="number" [(ngModel)]="newMovie.movieId" name="movieId" required /><br />
+
+  <label>Movie Name:</label>
+  <input type="text" [(ngModel)]="newMovie.movieName" name="movieName" required /><br />
+
+  <label>Language:</label>
+  <input type="text" [(ngModel)]="newMovie.language" name="language" required /><br />
+
+  <label>IMDB Rating:</label>
+  <input type="number" [(ngModel)]="newMovie.imdbRating" name="imdbRating" required /><br />
+
+  <button type="submit">{{ editMode ? 'Update' : 'Add' }} Movie</button>
+</form>
+
+<hr />
+
+<h3>Movie List</h3>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Language</th>
+    <th>Rating</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let m of movies">
+    <td>{{ m.movieId }}</td>
+    <td>{{ m.movieName }}</td>
+    <td>{{ m.language }}</td>
+    <td>{{ m.imdbRating }}</td>
+    <td>
+      <button (click)="editMovie(m)">Edit</button>
+      <button (click)="deleteMovie(m.movieId)">Delete</button>
+    </td>
+  </tr>
+</table>
