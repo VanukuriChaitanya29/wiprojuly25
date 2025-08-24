@@ -1,0 +1,21 @@
+.add-task-box {
+  border: 1px solid #3e75c3;
+  border-radius: 5px;
+  background: #f4f9ff;
+  width: 350px;
+}
+.form-control {
+  width: 100%;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+}
+.btn-success {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 12px;
+}
+.mt-4 { margin-top: 1.5rem; }
+.p-3 { padding: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }

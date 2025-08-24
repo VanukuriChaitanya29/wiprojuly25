@@ -1,0 +1,16 @@
+<div class="container py-4">
+  <h2 class="mb-3">Fruit List</h2>
+
+  <div class="row g-3">
+    <div class="col-12 col-sm-6 col-md-4" *ngFor="let f of fruits">
+      <div class="card h-100">
+        <img [src]="f.image" [alt]="f.name" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ f.name }}</h5>
+          <p class="card-text">{{ f.description }}</p>
+          <button class="btn btn-primary btn-sm">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

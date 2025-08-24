@@ -1,0 +1,10 @@
+<h2>Ex-3: Custom Pipe (Celsius → Fahrenheit)</h2>
+
+<!-- Input for Celsius -->
+<label>Enter Temperature (°C): </label>
+<input type="number" [(ngModel)]="centigrade" />
+
+<!-- Show Fahrenheit using custom pipe -->
+<p *ngIf="centigrade">
+  Converted: {{ centigrade | centToF }}
+</p>

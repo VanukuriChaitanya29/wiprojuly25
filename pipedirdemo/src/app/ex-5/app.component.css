@@ -1,0 +1,27 @@
+h2 {
+  color: darkblue;
+}
+
+form {
+  margin-bottom: 15px;
+}
+
+input {
+  margin: 5px;
+  padding: 5px;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: lightgray;
+}
