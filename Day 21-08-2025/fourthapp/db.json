@@ -1,0 +1,18 @@
+{
+  "vehicles": [
+    {
+      "id": "2",
+      "make": "Tesla",
+      "fuelType": "Electric",
+      "model": "Model 3",
+      "price": 42000
+    },
+    {
+      "id": "4",
+      "make": "Benz",
+      "fuelType": "Diesel",
+      "model": "Civic",
+      "price": 18000
+    }
+  ]
+}
