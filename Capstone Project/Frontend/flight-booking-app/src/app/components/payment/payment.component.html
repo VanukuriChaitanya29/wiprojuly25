@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h2>Payment Details</h2>
+
+  <!-- ✨ Show flight details -->
+  <div *ngIf="selectedFlight" class="card p-3 mb-4 shadow-sm">
+    <h5>Flight Details</h5>
+    <p>
+      <strong>{{ selectedFlight.aircraftName }} - {{ selectedFlight.flightNumber }}</strong><br>
+      {{ selectedFlight.source }} → {{ selectedFlight.destination }}<br>
+      {{ selectedFlight.travelDate | date }} — {{ selectedFlight.price | currency }}
+    </p>
+  </div>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="cardNumber" class="form-label">Card Number</label>
+      <input id="cardNumber" type="text" formControlName="cardNumber" class="form-control" maxlength="16" />
+      <div *ngIf="paymentForm.get('cardNumber')?.touched && paymentForm.get('cardNumber')?.invalid" class="text-danger">
+        Card number must be 16 digits.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nameOnCard" class="form-label">Name on Card</label>
+      <input id="nameOnCard" type="text" formControlName="nameOnCard" class="form-control" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="expiryMonth" class="form-label">Expiry Month</label>
+        <input id="expiryMonth" type="number" formControlName="expiryMonth" class="form-control" min="1" max="12" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="expiryYear" class="form-label">Expiry Year</label>
+        <input id="expiryYear" type="number" formControlName="expiryYear" class="form-control" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="cvv" class="form-label">CVV</label>
+        <input id="cvv" type="password" formControlName="cvv" class="form-control" maxlength="3" />
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="paymentForm.invalid">Pay</button>
+  </form>
+</div>

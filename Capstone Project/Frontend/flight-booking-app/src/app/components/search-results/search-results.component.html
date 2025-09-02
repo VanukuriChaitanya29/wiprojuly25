@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-primary"><i class="bi bi-search"></i> Search Results</h2>
+
+  
+  <!-- No results -->
+  <div *ngIf="noResults" class="alert alert-warning text-center shadow-sm">
+    <i class="bi bi-exclamation-triangle"></i> 
+    No Flights available matching your criterion
+    <br />
+    <a routerLink="/" class="btn btn-primary mt-3">🔙 Back to Home</a>
+  </div>
+
+  <!-- Filters -->
+  <div *ngIf="!noResults" class="card shadow-sm p-3 mb-4">
+    <h5><i class="bi bi-funnel"></i> Filters</h5>
+    <div class="row g-3 mt-2">
+      <div class="col-md-3">
+        <input type="number" class="form-control" [(ngModel)]="filters.priceMin" (input)="applyFilters()" placeholder="Min Price" />
+      </div>
+      <div class="col-md-3">
+        <input type="number" class="form-control" [(ngModel)]="filters.priceMax" (input)="applyFilters()" placeholder="Max Price" />
+      </div>
+      <div class="col-md-3">
+        <button (click)="clearFilters()" class="btn btn-outline-secondary w-10000">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="row">
+    <div *ngFor="let flight of filteredFlights" class="col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ flight.aircraftName }} - {{ flight.flightNumber }}</h5>
+          <p class="card-text text-muted">
+            <strong>Route:</strong> {{ flight.source }} → {{ flight.destination }} <br />
+            <strong>Date:</strong> {{ flight.travelDate | date }} <br />
+            <strong>Price: </strong> <span class="text-success fw-bold">{{ flight.price | currency }}</span>
+          </p>
+          <button class="btn btn-success w-10000" (click)="bookFlight(flight)">Book Flight</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
