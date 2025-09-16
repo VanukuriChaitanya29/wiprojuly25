@@ -1,0 +1,30 @@
+<div class="home-container d-flex align-items-center justify-content-center">
+  <div class="card shadow-lg p-4 search-card">
+    <h2 class="mb-4 text-center text-primary">✈ Flight Search</h2>
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="mb-3">
+        <label for="source" class="form-label">Source</label>
+        <input id="source" type="text" formControlName="source" class="form-control" placeholder="Enter source" />
+      </div>
+      <div class="swap-container">
+  <button type="button" class="swap-btn" (click)="swapSourceDestination()">
+    ⬌ Swap
+  </button>
+</div>
+
+
+      <div class="mb-3">
+        <label for="destination" class="form-label">Destination</label>
+        <input id="destination" type="text" formControlName="destination" class="form-control" placeholder="Enter destination" />
+      </div>
+
+      <div class="mb-3">
+        <label for="travelDate" class="form-label">Travel Date</label>
+        <input id="travelDate" type="date" formControlName="travelDate" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">🔍 Search Flights</button>
+    </form>
+  </div>
+</div>

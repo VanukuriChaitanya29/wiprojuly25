@@ -1,0 +1,32 @@
+<div class="container mt-5" *ngIf="bookedFlight; else redirect">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-success mb-3"><i class="bi bi-check-circle"></i> Payment Successful</h2>
+    <p class="lead">Your booking is confirmed 🎉</p>
+
+    <ul class="list-group mb-3">
+      
+      <li class="list-group-item"><strong>Flight:</strong> {{ bookedFlight?.aircraftName }} — {{ bookedFlight?.flightNumber }}</li>
+      <li class="list-group-item"><strong>Route:</strong> {{ bookedFlight?.source }} → {{ bookedFlight?.destination }}</li>
+      <li class="list-group-item"><strong>Date:</strong> {{ bookedFlight?.travelDate | date }}</li>
+      <li class="list-group-item">
+  <strong>Price:</strong> {{ bookedFlight?.price | currency:'INR':'symbol':'1.0-0' }}
+</li>
+
+    </ul>
+
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-outline-secondary" (click)="downloadTicket()">
+        <i class="bi bi-download"></i> Download Ticket
+      </button>
+      <a class="btn btn-primary" routerLink="/">
+        <i class="bi bi-house"></i> Book Another
+      </a>
+    </div>
+  </div>
+</div>
+
+<ng-template #redirect>
+  <div class="alert alert-info mt-4 text-center shadow-sm">
+    No booking found. Returning to home…
+  </div>
+</ng-template>
